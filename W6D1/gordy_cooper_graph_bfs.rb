@@ -1,3 +1,5 @@
+require "set"
+
 class GraphNode
     
     attr_accessor :value, :neighbors
@@ -7,8 +9,18 @@ class GraphNode
         @neighbors = []
     end
 
+end
 
-
+def bfs(starting_node, target_value)
+    visited = Set.new
+    queue = [starting_node]
+    until queue.empty?
+        node = queue.shift
+        visited.add(node.value)
+        queue += node.neighbors.reject { |neighbor| visited.include?(neighbor.value)}
+        return node if node.value == target_value
+    end
+    nil
 end
 
 a = GraphNode.new('a')
@@ -21,3 +33,5 @@ a.neighbors = [b, c, e]
 c.neighbors = [b, d]
 e.neighbors = [a]
 f.neighbors = [e]
+
+p bfs(a, "f")
