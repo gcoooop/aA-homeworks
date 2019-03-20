@@ -1,5 +1,3 @@
-require "byebug"
-
 class Simon
   COLORS = %w(red blue green yellow)
 
@@ -36,7 +34,7 @@ class Simon
     unless self.game_over
       self.sequence_length += 1
       round_success_message
-    endear
+    end
 
   end
 
@@ -67,4 +65,5 @@ class Simon
     self.game_over = false
     self.seq = []
   end
+  
 end
